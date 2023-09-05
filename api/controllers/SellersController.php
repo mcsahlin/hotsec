@@ -18,12 +18,9 @@ class SellersController extends SellerModel
   {
     $id = $this->request->params['id'] ?? null;
     $sort = $this->request->params['sort'] ?? null;
-    isset($id) &&
-      $this->view->renderJson($this->compileSellerData($id));
-    isset($sort) &&
-      $this->view->renderJson($this->model->fetchAll($sort));
-    !isset($id) && !isset($sort) &&
-      $this->view->renderJson($this->model->fetchAll());
+    isset($id) && $this->view->renderJson($this->compileSellerData($id));
+    isset($sort) && $this->view->renderJson($this->model->fetchAll($sort));
+    !isset($id) && !isset($sort) && $this->view->renderJson($this->model->fetchAll());
   }
 
   public function insert()
@@ -35,8 +32,7 @@ class SellersController extends SellerModel
   {
     return [
       array(
-        'seller' =>
-        $this->model->fetch($id),
+        'seller' => $this->model->fetch($id),
         'submissionCount' => $this->model->getSellerItemCount($id),
         'soldItemCount' => $this->model->getSellerSoldItemCount($id),
         'salesTotal' => $this->model->getSellerSalesTotal($id),
