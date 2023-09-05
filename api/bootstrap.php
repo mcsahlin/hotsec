@@ -29,4 +29,5 @@ function mvcLoader($className)
       }
     }
   } while (!$found);
+  return $found;
 }
