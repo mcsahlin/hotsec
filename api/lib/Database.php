@@ -3,7 +3,7 @@
 declare(strict_types=1);
 class Database
 {
-  protected PDO $pdo;
+  protected $pdo;
   public function __construct()
   {
     $config = require('api/config/config.php');
@@ -18,7 +18,11 @@ class Database
     } catch (PDOException $e) {
       die($e->getMessage());
     }
-    unset($dbconf, $config['db']);
     $this->pdo = $pdo;
+    unset($dbconf, $config['db']);
+  }
+  public function __destruct()
+  {
+    $this->pdo = null;
   }
 }
