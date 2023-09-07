@@ -1,8 +1,6 @@
 ---
 type: Page
-title: HotSec API 
-description: null
-icon: null
+title: HotSec API Documentation
 createdAt: 2023-09-07 21:23
 lastUpdated: 2023-09-07 22:03
 tags: [REST, API, HotSec, PHP, MVC, MySQL, JSON, Postman]
