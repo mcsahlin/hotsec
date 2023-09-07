@@ -1,26 +1,25 @@
 ---
 type: Page
-title: HotSec API Documentation
+title: HotSec API 
 createdAt: 2023-09-07 21:23
-lastUpdated: 2023-09-07 22:03
-tags: [REST, API, HotSec, PHP, MVC, MySQL, JSON, Postman]
+lastUpdated: 2023-09-07 22:50
+tags: ['PHP', 'MVC, 'MySQL', 'API', 'REST', 'JSON']
 ---
 
 
+## Testing requests
 
 Use postman or similar interface to test out the HotSec API as follows:
 
-## SELLERS REQUESTS
+### SELLERS
 
-## GET: Sellers
-
-### Sellers index
+#### GET: Sellers index
 
 ```text
 /sellers
 ```
 
-### Lists sellers in ascending order by first- or last name  
+#### GET: Lists sellers in ascending order by first- or last name  
 
 ```text
 /sellers/?sort=firstname
@@ -30,17 +29,13 @@ Use postman or similar interface to test out the HotSec API as follows:
 /sellers/?sort=lastname
 ```
 
-### Enriched seller data
+#### GET: Enriched seller data
 
 ```text
 /sellers?id=1
 ```
 
----
-
-## POST
-
-### Create new seller
+#### POST: Create new seller
 
 Use the following template to insert a new seller into the HotSec database:
 
@@ -57,29 +52,21 @@ Use the following template to insert a new seller into the HotSec database:
 } 
 ```
 
----
+### ITEMS
 
-## ITEMS REQUESTS
-
-## GET: Items
-
-### Items index
+#### GET: Items index
 
 ```text
 /items
 ```
 
-### Order items by price
+#### GET: Order items by price
 
 ```text
 /items/?sort=price
 ```
 
----
-
-## POST: Items
-
-### Create new item
+#### POST: Create new item
 
 Use the following template to insert a new item into the HotSec database:
 
@@ -99,11 +86,7 @@ Use the following template to insert a new item into the HotSec database:
 }
 ```
 
----
-
-## PUT: Items
-
-### Toggle an items sale status
+#### PUT: Change an items retail state (sold / not sold)
 
 Select item by setting "id" parameter, then set the "sold" paramter value to "1" for sold, or "0" for not sold. Example:
 
@@ -115,6 +98,26 @@ Select item by setting "id" parameter, then set the "sold" paramter value to "1"
 
 ## Prerequisites met for further development
 
-- The items table automatically adds a column for creation date, facilitating further development around this metric.
+### Database Structure
 
-- The database contains an "events" table in order to connect and track associated events across database structures.
+This project utilizes a database with several tables to manage data related to sellers, items, and events. Here's an overview of the table structure:
+
+#### Sellers Table
+
+- This table stores information about sellers, such as their names, contact details, and any other relevant information. Each seller is assigned a unique identifier (primary key), which is used to establish relationships with other tables.
+
+#### Items Table
+
+- The items table maintains records of all registered items. Each item is associated with details like the item's name, price, description, retail state etc. Each item has a unique identifier (primary key) that helps establish relationships with other tables.
+
+#### Events Table
+
+- The events table stores information about different events. It includes details such as the event's name, date and time. Further columns may be added in the future. Each event is assigned a unique identifier (primary key).
+
+#### Seller_Events Table
+
+- The seller_events table acts as a junction or association table, establishing a many-to-many relationship between sellers and events. It includes foreign keys that reference the primary keys of both the sellers table and the events table. This table allows multiple sellers to be associated with multiple events and vice versa.
+
+#### Item_Events Table
+
+- Similar to the seller_events table, the item_events table serves as a junction or association table. It enables a many-to-many relationship between items and events, with foreign keys referencing the primary keys of both the items table and the events table. This table allows multiple items to be associated with multiple events and vice versa.
