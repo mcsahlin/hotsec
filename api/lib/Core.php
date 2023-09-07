@@ -4,7 +4,7 @@ declare(strict_types=1);
 class Core
 {
   protected Request $request;
-  protected ItemsController | SellersController $controller;
+  protected ItemsController|SellersController $controller;
   protected $currentMethod;
   protected $params = [];
 
@@ -15,8 +15,8 @@ class Core
   private function handleRequest(): void
   {
     $this->request = new Request();
-    $this->controller = new (ucfirst($this->request->endpoint) . 'Controller'($this->request));
-    // $this->controller = new $currentController($request);
+    $currentController = ucfirst($this->request->endpoint) . 'Controller';
+    $this->controller = new $currentController($this->request);
     switch ($this->request->httpMethod) {
       case 'GET':
         $this->controller->index();
@@ -31,7 +31,7 @@ class Core
       case 'PUT':
         switch ($this->request->endpoint) {
           case 'items':
-            $this->controller->update($this->request->params['id'], $this->request->params['sold']);
+            $this->controller->setSold();
             break;
           default:
             die('Invalid PUT request');

@@ -28,13 +28,26 @@ class ItemsController extends ItemModel
 
   public function insert()
   {
+    try {
+      $this->model->create($this->request->body);
+    } catch (Exception $e) {
+      $this->view->renderJson(['errorCode' => 400, 'error' => $e->getMessage()]);
+      die();
+    }
     $this->view->renderJson($this->model->create($this->request->body));
   }
 
   public function setSold()
   {
-    $id = $this->request->params['id'];
-    $sold = $this->request->params['sold'];
-    $this->view->renderJson($this->model->update($id, $sold));
+    try {
+      if (isset($this->request->params['id']) && isset($this->request->params['sold'])) {
+        $this->view->renderJson($this->model->update($this->request->params['id'], $this->request->params['sold']));
+      } else {
+        throw new Exception('Invalid request');
+      }
+    } catch (Exception $e) {
+      $this->view->renderJson(['errorCode' => 400, 'error' => $e->getMessage()]);
+      die();
+    }
   }
 }
