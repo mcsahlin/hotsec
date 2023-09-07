@@ -3,7 +3,7 @@ type: Page
 title: HotSec API 
 createdAt: 2023-09-07 21:23
 lastUpdated: 2023-09-07 22:50
-tags: ['PHP', 'MVC, 'MySQL', 'API', 'REST', 'JSON']
+tags: ['PHP', 'MVC', 'MySQL', 'API', 'REST', 'JSON']
 ---
 
 
