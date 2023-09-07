@@ -7,9 +7,12 @@ tags: ['PHP', 'MVC', 'MySQL', 'API', 'REST', 'JSON']
 ---
 
 
-## Testing requests
+## Config setup
 
-Use postman or similar interface to test out the HotSec API as follows:
+1. Go to api/config/config.sample.php and update file with your own db credentials.
+2. Remove '.sample' from the file name.
+3. The accompanied sample data are to be found in the root file hotsec.sql.
+4. Use postman or similar interface to test out the HotSec API as follows:
 
 ### SELLERS
 
